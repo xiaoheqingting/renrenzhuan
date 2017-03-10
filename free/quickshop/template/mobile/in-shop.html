@@ -1,0 +1,238 @@
+{if !empty($this->module['config']['enable_inshop_mode'])}
+<style>
+#DIV_1 {
+    color: rgb(51, 51, 51);
+    height: 178.375px;
+    width: 100%;
+    border: 0px none rgb(51, 51, 51);
+    font-family: Helvetica, 'STHeiti STXihei', 'Microsoft JhengHei', 'Microsoft YaHei', Tohoma, Arial;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#DIV_1*/
+
+#DIV_2 {
+    background-position: 50% 0%;
+    color: rgb(51, 51, 51);
+    height: 129.375px;
+    position: relative;
+    width: 100%;
+    background: rgb(255, 255, 255) url({php echo toimage($this->module['config']['inshop_banner'])}) no-repeat scroll 50% 0% / cover padding-box border-box;
+    border: 0px none rgb(51, 51, 51);
+    font-size:16px/16px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#DIV_2*/
+
+#inshop-title {
+    bottom: 10px;
+    color: {php echo $this->module['config']['inshop_color']};
+    height: 16px;
+    left: 100px;
+    position: absolute;
+    text-shadow: rgba(0, 0, 0, 0.498039) 0px 1px 2px;
+    border: 0px none rgb(255, 255, 255);
+    font-size: 16px;
+    outline: rgb(255, 255, 255) none 0px;
+}/*#inshop-title*/
+
+#inshop-top-banner-add {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 80px;
+    position: absolute;
+}
+
+#inshop-avatar {
+    bottom: -40px;
+    color: rgb(51, 51, 51);
+    height: 80px;
+    left: 10px;
+    position: absolute;
+    width: 80px;
+    border: 0px none rgb(51, 51, 51);
+    font-size: 16px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#inshop-avatar*/
+
+#IMG_5 {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 1px 1px;
+    color: rgb(51, 51, 51);
+    height: 80px;
+    width: 80px;
+    background: rgb(228, 228, 228) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 0px none rgb(51, 51, 51);
+    border-radius: 3px 3px 3px 3px;
+    font-size: 16px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#IMG_5*/
+
+#inshop-content {
+    color: rgb(51, 51, 51);
+    height: 33px;
+    width: 100%;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
+    border-top: 1px solid rgb(228, 228, 228);
+    border-bottom: 1px solid rgb(228, 228, 228);
+    font-size:16px;
+    outline: rgb(51, 51, 51) none 0px;
+    padding: 7px 0px;
+}/*#inshop-content*/
+
+#clearfix {
+    color: rgb(51, 51, 51);
+    height: 33px;
+    border: 0px none rgb(51, 51, 51);
+    font-size:16px;
+    list-style: none outside none;
+    margin: 0px 0px 0px 86px;
+    outline: rgb(51, 51, 51) none 0px;
+    padding: 0px;
+}/*#clearfix*/
+
+#clearfix:after {
+    clear: both;
+    color: rgb(51, 51, 51);
+    display: table;
+    width: 1px;
+    content: '';
+    border: 0px none rgb(51, 51, 51);
+    font-size:16px;
+    list-style: none outside none;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#clearfix:after*/
+
+#LI_8, #LI_12 {
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+    float: left;
+    height: 17px;
+    width: 33%;
+    border-top: 0px none rgb(51, 51, 51);
+    border-right: 1px solid rgb(228, 228, 228);
+    border-bottom: 0px none rgb(51, 51, 51);
+    border-left: 0px none rgb(51, 51, 51);
+    font-size:16px;
+    list-style: none outside none;
+    margin: 10px 0px 6px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#LI_8, #LI_12*/
+
+#A_9, #A_13 {
+    color: rgb(51, 51, 51);
+    display: block;
+    height: 33px;
+    text-align: left;
+    text-decoration: none;
+    border: 0px none rgb(51, 51, 51);
+    font-size: 16px;
+    list-style: none outside none;
+    margin: -10px 0px -6px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#A_9, #A_13*/
+
+#SPAN_10, #SPAN_14 {
+    color: rgb(51, 51, 51);
+    display: block;
+    height: 21px;
+    text-align: center;
+    border: 0px none rgb(51, 51, 51);
+    font-size:18px;
+    list-style: none outside none;
+    outline: rgb(51, 51, 51) none 0px;
+    overflow: hidden;
+}/*#SPAN_10, #SPAN_14*/
+
+#SPAN_11, #SPAN_15 {
+    color: rgb(153, 153, 153);
+    display: block;
+    height: 12px;
+    text-align: center;
+    border: 0px none rgb(153, 153, 153);
+    font-size:12px;
+    list-style: none outside none;
+    outline: rgb(153, 153, 153) none 0px;
+}/*#SPAN_11, #SPAN_15*/
+
+#LI_16 {
+    box-sizing: border-box;
+    color: rgb(51, 51, 51);
+    float: left;
+    height: 17px;
+    width: 34%;
+    border: 0px none rgb(51, 51, 51);
+    font-size:16px;
+    list-style: none outside none;
+    margin: 10px 0px 6px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#LI_16*/
+
+#A_17 {
+    color: rgb(51, 51, 51);
+    display: block;
+    height: 33px;
+    text-align: left;
+    text-decoration: none;
+    border: 0px none rgb(51, 51, 51);
+    font-size:16px;
+    list-style: none outside none;
+    margin: -10px 0px -6px;
+    outline: rgb(51, 51, 51) none 0px;
+}/*#A_17*/
+
+#SPAN_18 {
+    background-position: 50% 50%;
+    color: rgb(51, 51, 51);
+    display: block;
+    height: 18px;
+    text-align: center;
+    /* background: rgba(0, 0, 0, 0) url(http://kdt-static.qiniucdn.com/v2/image/me@2x.png) no-repeat scroll 50% 50% / contain padding-box border-box; */
+    border: 0px none rgb(51, 51, 51);
+    font-size:18px;
+    list-style: none outside none;
+    margin: 0px 0px 3px;
+    outline: rgb(51, 51, 51) none 0px;
+    overflow: hidden;
+}/*#SPAN_18*/
+
+#SPAN_19 {
+    color: rgb(153, 153, 153);
+    display: block;
+    height: 12px;
+    text-align: center;
+    border: 0px none rgb(153, 153, 153);
+    font-size:12px;
+    list-style: none outside none;
+    outline: rgb(153, 153, 153) none 0px;
+}/*#SPAN_19*/
+</style>
+<div id="DIV_1">
+  <div id="DIV_2">
+    <a href="{php echo empty($this->module['config']['inshop_banner_href']) ? 'javascript:void()' : $this->module['config']['inshop_banner_href']}">
+      <div id="inshop-top-banner-add"></div>
+    </a>
+    <div id="inshop-title">
+      {$shopowner['shopname']}
+    </div>
+    <a href="{php echo empty($this->module['config']['inshop_logo_href']) ? 'javascript:void()' : $this->module['config']['inshop_logo_href']}">
+    <div id="inshop-avatar">
+      <img src="{$shopowner['avatar']}" alt="{if empty($shopowner['avatar'])}未设置{else}头像{/if}" id="IMG_5" />
+    </div>
+  </div>
+  </a>
+  <div id="inshop-content">
+    <ul id="clearfix">
+      <li id="LI_8">
+        <a href="{php echo $this->createMobileUrl('Nav')}" id="A_9"> <span id="SPAN_10">{$goodstotal}</span> <span id="SPAN_11">全部商品</span></a>
+      </li>
+      <li id="LI_12">
+      <a href="{php echo $this->createMobileUrl('ListByTag', array('category'=>'isnew'))}" id="A_13"> <span id="SPAN_14">{$newtotal}</span> <span id="SPAN_15">上新商品</span></a>
+      </li>
+      <li id="LI_16">
+      <a href="{php echo $this->createMobileUrl('myorder')}" id="A_17"><span id="SPAN_18"> <i class='fa fa-user'></i></span> <span id="SPAN_19">我的订单</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{/if}
+
+

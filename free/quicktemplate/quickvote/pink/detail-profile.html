@@ -1,0 +1,30 @@
+<style>
+  .WB_feed_detail { padding: 10px 16px 10px 10px; vertical-align:top; color:#000;}
+  .WB_face { width:50px; }
+  .W_fl { float:left; }
+  .WB_detail {margin-left:60px;}
+  .WB_info { margin: 0 0 3px; padding: 5px 0 0;}
+  .WB_text { padding: 1px 0 3px; overflow: hidden; line-height: 23px; word-wrap: break-word; }
+  .W_face_radius {border-radius: 50%; }
+  .W_f14 { font-size: 14px; }
+  .W_fb { font-weight: 700; }
+  .W_cert { color:rgb(255,181,2); margin-bottom:10px;}
+</style>
+
+<div class="clearfix WB_feed_detail">
+  <div class="WB_face W_fl">
+    <div class="face">
+      <img width="50" height="50" src="{$fans['avatar']}" class="W_face_radius"></a></div>
+  </div>
+  <div class="WB_detail">
+    <div class="WB_info W_f14 W_fb S_txt1">{if empty($fans['nickname'])}匿名客户{else}{$fans['nickname']}{/if}<em class="W_cert icon-star"></em></div>
+    <div class="WB_text W_f14">{$show['text']}</div>
+    <div class="WB_from S_txt2"><span style="color:#666">{php echo date('Y-m-d', $show['createtime'])}</span> 
+      {if !empty($fans['from_user']) and $fans['from_user'] == $_W['fans']['from_user']}
+      <span style="color:#666"> 阅读 {$show['viewcount']} </span>
+      {/if}
+      来自 <a href='{php echo murl('entry/module/list', array('m'=>'quickshop', 'weid'=>$_W['uniacid']))}'>{$_W['account']['name']}</a>
+    </div>
+  </div>
+</div>
+

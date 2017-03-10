@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest versionCode="0.5,0.51">
+    <identifie><![CDATA[one]]></identifie>
+    <title><![CDATA[One(商业)]]></title>
+    <description><![CDATA[One(商业模板)]]></description>
+    <author><![CDATA[one]]></author>
+    <url><![CDATA[http://www.xuehuar.com]]></url>
+    <category>
+      <item>
+        <title><![CDATA[One(商业)]]></title>
+        <thumb><![CDATA[list.jpg]]></thumb>
+        <file><![CDATA[list]]></file>
+      </item>
+    </category>
+    <article>
+      <item>
+        <title><![CDATA[One(商业)]]></title>
+        <thumb><![CDATA[detail.jpg]]></thumb>
+        <file><![CDATA[detail]]></file>
+      </item>
+  </article>
+</manifest>

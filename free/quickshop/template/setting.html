@@ -1,0 +1,317 @@
+{template 'common/header'}
+{template 'common'}
+<style>
+  .bg-success {padding:4px;}
+</style>
+<div class="main">
+    <form action="" method="post" class="form-horizontal form">
+
+      <div class="panel panel-default"><div class="panel-heading">自定义"东家"称呼</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('称呼', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('text', 'sellername', $settings['sellername'])}
+          <span class="help-block">觉得称作"东家"太土?这里可以自定义为任意称呼，例如:分销商,业务员,小二,经理,等等，就看你的想象力啦!</span>
+        </div>
+      </div>
+      </div> </div>
+
+
+      <div class="panel panel-default"  id="single_shop"><div class="panel-heading">单品分销</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('启用单品分销模式', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('select', 'enable_single_goods_id', $settings['enable_single_goods_id'], $shop_items);}
+          <span class="help-block">选择一个单品后，商城自动进入单品商城模式</span>
+        </div>
+      </div>
+      </div> </div>
+
+
+      <div class="panel panel-default"><div class="panel-heading">自动推送海报</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('下单后自动<br/>推送二维码海报', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          <a href="{php echo wurl('profile/module/setting', array('m'=>'quicklink'))}#auto_push_qr">前往设置</a>
+          <span class="help-block">用户下单后自动给用户推送海报。前往选择海报关键字，触发相应海报推送。</span>
+        </div>
+      </div>
+      </div> </div>
+
+
+      <div class="panel panel-default"><div class="panel-heading">初始默认收货城市</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('默认城市', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              <div class="input-group col-xs-12 col-sm-4 col-md-4 col-lg-4" style="float:left">
+                <span class="input-group-addon">省:</span>
+                {php echo FormTpl::getWebControl2('text', 'default_province', $settings['default_province'])}
+              </div>
+              <div class="input-group col-xs-12 col-sm-4 col-md-4 col-lg-4"  style="float:left">
+                <span class="input-group-addon">市:</span>
+                {php echo FormTpl::getWebControl2('text', 'default_city', $settings['default_city'])}
+              </div>
+             <div class="input-group col-xs-12 col-sm-4 col-md-4 col-lg-4" style="float:left">
+                <span class="input-group-addon">区/县:</span>
+                {php echo FormTpl::getWebControl2('text', 'default_area', $settings['default_area'])}
+              </div>
+              <span class="help-block">对于本地商家，省市可以预先填好。填写的内容，必须带上市、区字样，例如：湖北省，武汉市，武昌区。</span>
+        </div>
+      </div>
+      </div> </div>
+
+      <div class="panel panel-default"><div class="panel-heading" id="add_order_remark">下单备注</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('是否开启下单备注', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('select', 'enable_order_remark', $settings['enable_order_remark'], $order_remark_option);}
+          <span class="help-block">如商城有特殊需求，需要用户下单时备注特殊信息，可开启此选项。</span>
+        </div>
+      </div>
+      </div> </div>
+
+      <div class="panel panel-default"><div class="panel-heading">下单后的模板消息通知</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('模板ID', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('text', 'payed_template_id', $settings['payed_template_id']);}
+          <span class="help-block">目前<b style="color:red">仅支持</b>一种模板：微信公众平台-模板消息-选择(订单状态更新 IT科技  互联网|电子商务)这个模板<a href="{RES_IMG}/tpl.png">【查看例子】</a></span>
+        </div>
+      </div>
+      </div> </div>
+
+      <div class="panel panel-default"><div class="panel-heading" id="add_order_remark">下单后返回公众号</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('是否开启下单后返回公众号', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('select', 'enable_auto_close_window_after_pay', $settings['enable_auto_close_window_after_pay'], $enable_auto_close_window_after_pay_option);}
+          <span class="help-block">对于提供咨询服务的商城，可以开启本选项。下单成功后自动关闭浏览器，进入公众号聊天界面。</span>
+        </div>
+      </div>
+      </div> </div>
+
+
+      <div class="panel panel-default hidden"><div class="panel-heading" id="remove_order">多客服设置</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('多客服链接地址', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          <span class="help-block text-primary">{$_W['siteroot']}app/{php echo murl('entry/module/crmframe', array('i'=>$_W['uniacid'], 'm'=>'quickfans'))}</span>
+          <span class="help-block">使用方法：<ol><li>登陆https://mp.weixin.qq.com</li><li>多客服-客户端高级设置-添加插件</li><li>URL填写上面的地址, 确认</li><li>打开多客服Windows客户端就可以看到本插件。</li></ol></span>
+        </div>
+      </div>
+      </div> </div>
+
+
+
+      <div class="panel panel-default"><div class="panel-heading" id="remove_order">订单管理</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('未支付订单处理', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('select', 'enable_user_remove_order', $settings['enable_user_remove_order'], $remove_order_option);}
+          <span class="help-block">允许用户删除未支付订单，会在未支付订单右上角显示删除按钮，对洁癖用户是利好。
+            <br>但需要注意：未支付订单是有价值的，用户可能最终下单，最终形成支付。允许删除则失去了该机会。</span>
+        </div>
+      </div>
+      </div> </div>
+
+
+      <div class="panel panel-default"><div class="panel-heading" id="add_order_remark">点击首页【更多】打开内容</div><div class="panel-body">
+      <div class="form-group">
+        {php echo FormTpl::label2('点击首页【更多】后打开页面', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('select', 'enable_more_secondary', $settings['enable_more_secondary'], $enable_more_secondary_option);}
+          <span class="help-block">商品较多时，建议设置为显示二级分类。本选项仅针对jumei模板。</span>
+        </div>
+      </div>
+      </div> </div>
+
+
+        {if $_W['isfounder']}
+        <div class="panel panel-default"><div class="panel-heading">启用模板</div><div class="panel-body">
+        <div class="form-group">
+          {php echo FormTpl::label2('选择模板', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('select', 'template', $settings['template'], $template_items);}
+            <span class="help-block">选择要启用的模板。选择后，如果未生效，请清空微信缓存。<br>自定义模板，请参考quicktemplate/quickshop/目录下的pink模板，将该模板的目录<b>复制</b>改名，然后在新目录中修改即可。注意，pink目录不可删除，当找不到其它模板的时候，会默认使用pink模板。</span>
+          </div>
+        </div>
+
+      <div class="form-group">
+        {php echo FormTpl::label2('版权保护', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+          {php echo FormTpl::getWebControl2('select', 'force_open_in_wechat', $settings['force_open_in_wechat'], $force_open_in_wechat_option);}
+          <span class="help-block">这个选项是为了防止自己做的模板被盗用。</span>
+        </div>
+      </div>
+      </div> </div>
+      {else}
+        {php echo FormTpl::getWebControl2('hidden', 'force_open_in_wechat', $settings['force_open_in_wechat']);}
+      {/if}
+
+
+
+      <div class="panel panel-default"><div class="panel-heading">店中店设置</div>
+        <div class="panel-body">
+          <div class="form-group">
+            {php echo FormTpl::label2('启用店中店<br/>分销模式', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php echo FormTpl::getWebControl2('select', 'enable_inshop_mode', $settings['enable_inshop_mode'], $inshop_mode_option);}
+              <span class="help-block">启用单品分销后，部分模板会使用店中店模式。</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('品牌名称', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php echo FormTpl::getWebControl2('text', 'shopname', $settings['shopname']);}
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('店中店店铺<br/>分享到朋友圈标题', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php echo FormTpl::getWebControl2('text', 'inshop_share_title', $settings['inshop_share_title']);}
+              <span class="help-block">支持调用昵称，例如：nickname微店铺</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('店中店店铺<br/>分享到朋友圈描述', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php echo FormTpl::getWebControl2('text', 'inshop_share_text', $settings['inshop_share_text']);}
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('店中店店铺<br/>抬头背景图', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php load()->func('tpl'); }
+              {php echo FormTpl::getWebControl2('image', 'inshop_banner', $settings['inshop_banner']);}
+              <span class="help-block">建议上传640*200像素图像, 格式为jpg或png。</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('点击抬头背景图<br/>跳转到', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php echo FormTpl::getWebControl2('text', 'inshop_banner_href', $settings['inshop_banner_href']);}
+              <span class="help-block">留空不跳转。例如，可以跳转到某热门商品，热门商品链接可去商品后台获取。</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('店中店<br/>主店Logo', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php load()->func('tpl'); }
+              {php echo FormTpl::getWebControl2('image', 'inshop_logo', $settings['inshop_logo']);}
+              <span class="help-block">建议上传128*128像素方形Logo，不上传则默认使用微信号Logo。</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            {php echo FormTpl::label2('点击主店Logo跳转到', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php load()->func('tpl'); }
+              {php echo FormTpl::getWebControl2('text', 'inshop_logo_href', $settings['inshop_logo_href']);}
+              <span class="help-block">留空不跳转。例如，可以跳转到用户中心，则填写：{php echo murl('entry/module/center', array('m'=>'quickcenter', 'weid'=>$_W['uniacid']), true)} </span>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            {php echo FormTpl::label2('店中店抬头<br/>文字颜色', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+            <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+              {php load()->func('tpl'); }
+              {php echo tpl_form_field_color('inshop_color', $settings['inshop_color']);}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+        <div class="panel panel-default"><div class="panel-heading">如何提高VIP等级链接</div><div class="panel-body">
+        <div class="form-group">
+          {php echo FormTpl::label2('页面地址', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('text', 'vip_buy_guide_link', $settings['vip_buy_guide_link']);}
+            <div class="help-block">当用户因为VIP等级不够无法购买时提示用户如何提升VIP等级。</div>
+          </div>
+        </div>
+      </div> </div>
+
+      <div class="panel panel-default"><div class="panel-heading">关注引导页</div><div class="panel-body">
+        <div class="form-group">
+          {php echo FormTpl::label2('页面地址', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('text', 'followurl', $settings['followurl']);}
+            <div class="help-block">主要用于单品分销的首页，提示未关注微信号的用户关注后下单购买。</div>
+          </div>
+        </div>
+      </div> </div>
+
+
+        <div class="panel panel-default"><div class="panel-heading">商城信息</div><div class="panel-body">
+        <div class="form-group">
+          {php echo FormTpl::label2('官方网址', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('text', 'officialweb', $settings['officialweb']);}
+          </div>
+        </div>
+        <div class="form-group">
+          {php echo FormTpl::label2('品牌图片', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php load()->func('tpl'); }
+            {php echo FormTpl::getWebControl2('image', 'logo', $settings['logo']);}
+          </div>
+        </div>
+        <div class="form-group">
+          {php echo FormTpl::label2('联系电话', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('text', 'phone', $settings['phone']);}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {php echo FormTpl::label2('所在地址', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('text', 'address', $settings['address']);}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {php echo FormTpl::label2('品牌介绍', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('textarea', 'description', $settings['description']);}
+          </div>
+        </div>
+
+        <div class="form-group">
+          {php echo FormTpl::label2('&nbsp;', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+          <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+            {php echo FormTpl::getWebControl2('submit', 'submit', '提交');}
+            {php echo FormTpl::getWebControl2('hidden', 'token', $_W['token']);}
+          </div>
+        </div>
+      </div> </div>
+    </form>
+</div>
+
+
+<script language='javascript'>
+	require(['jquery', 'util'], function($, u){
+		$(function(){
+      $('#description').each( function() {
+			  u.editor(this);
+      });
+    });
+
+    $(function(){
+      var myURL = document.location.href;
+      if(myURL.indexOf('single_shop') != -1){
+        $('#single_shop').addClass('panel-danger');
+      }
+    });
+	});
+</script>
+{template 'common/footer'}

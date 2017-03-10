@@ -1,0 +1,17 @@
+{php include $_template->template('header')}
+{php include $_template->template('jumei-nav-header')}
+
+<!--活动列表-->
+<section id="global-deals-new" class="global-deals-new">
+<section id="deals-content" class="deals-content">
+    <!--栏目一-->
+    <ul class="touch-activity-detail clear">
+      {loop $category $item}
+      {php include $_template->template('cate_item')}
+      {/loop}
+    </ul>
+    <!--栏目一 end-->
+</section>
+
+{php include $_template->template('jumei-nav-footer')}
+{php include $_template->template('footer')}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.6">
+	<application setting="true">
+		<name><![CDATA[码上涨粉]]></name>
+		<identifie><![CDATA[quicklink]]></identifie>
+		<version><![CDATA[3.0.07]]></version>
+		<type><![CDATA[business]]></type>
+    <ability><![CDATA[传单传播,码上涨粉]]></ability>
+    <description><![CDATA[传单传播,码上涨粉]]></description>
+		<author><![CDATA[晓楚]]></author>
+    <url><![CDATA[http://blog.csdn.net/maray]]></url>
+	</application>
+	<platform>
+		<subscribes>
+			<message type="scan" />
+			<message type="subscribe" />
+		</subscribes>
+		<handles>
+			<message type="text" />
+			<message type="subscribe" />
+		</handles>
+		<rule embed="true" />
+	</platform>
+  <bindings>
+    <cover>
+      <entry title="下线排行榜" do="Top" />
+      <entry title="积分排行榜" do="TopCredit" />
+      <entry title="我的拉人积分" do="Credit" />
+      <entry title="我的推广效果" do="Follow" />
+    </cover>
+    <menu>
+			<entry title="传单管理" do="Spread" />
+			<entry title="黑名单" do="BlackList" />
+			<entry title="排行榜" do="Ranking" />
+		</menu>
+	</bindings>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[
+DROP TABLE IF EXISTS `ims_quickspread_iptable`;
+DROP TABLE IF EXISTS `ims_quickspread_spread`;
+DROP TABLE IF EXISTS `ims_quickspread_user`;
+DROP TABLE IF EXISTS `ims_quickspread_qr`;
+DROP TABLE IF EXISTS `ims_quickspread_top_cache`;
+DROP TABLE IF EXISTS `ims_quickspread_channel`;
+DROP TABLE IF EXISTS `ims_quickspread_active_channel`;
+DROP TABLE IF EXISTS `ims_quickspread_follow`;
+DROP TABLE IF EXISTS `ims_quickspread_blacklist`;
+DROP TABLE IF EXISTS `ims_quickspread_reply`;
+	]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

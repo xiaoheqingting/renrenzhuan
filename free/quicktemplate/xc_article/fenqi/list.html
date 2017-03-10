@@ -1,0 +1,93 @@
+{template 'header'}
+<style>
+    body {
+        background-color: #fbf9fe;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .vsui_nav {
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        align-content: flex-start;
+        -webkit-align-content: flex-start;
+        align-items: flex-start;
+        -webkit-align-items: flex-start;
+        list-style-type: none;
+        margin: 10px;
+    }
+
+    .vsui_nav li {
+        -webkit-flex-grow: 1;
+        display: list-item;
+        width:18%;
+        margin:10px;
+        &:empty {
+            height: 0;
+            border: none;
+        };
+    }
+
+    .vsui_nav img {
+        width:100%;
+    }
+
+    .vsui_nav a {
+        color:black;
+        text-decoration:none;
+    }
+
+    .vsui_nav p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height:25px;
+    }
+    .vsui_banner {
+    }
+
+    .vsui_banner a {
+        color:black;
+        text-decoration:none;
+    }
+
+    .vsui_banner li {
+        display: list-item;
+        width:100%;
+        margin-bottom:10px;
+    }
+    .vsui_banner li img{
+        width:100%;
+    }
+    .bd {
+        margin:20px 0px 20px 0px;
+    }
+
+</style>
+<!-- Banner -->
+<ul class="vsui_banner">
+    {if !empty($category['thumb']) }
+        <li><a href="#">
+            <img src="{php echo tomedia($category['thumb'])}" alt="{php echo $category['name']}" />
+        </a></li>
+    {/if}
+</ul>
+
+
+<!-- 推荐书籍 -->
+<ul class="vsui_nav">
+    {data func="xc_article_site_article" cid=$cid return="true" assign="result"}
+    {loop $result['list'] $row}
+    <li><a href="{$row['url']}">
+            <img src="{php echo tomedia($row['sharethumb'])}" alt="{$row['title']}" />
+            <p  style="text-align:center">{php echo mb_substr($row['title'], 0, 5)}</p>
+    </a></li>
+    {/loop}
+</ul>
+{$result['pager']}
+{template 'footer'}

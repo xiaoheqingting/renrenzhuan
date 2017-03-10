@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest versionCode="0.5,0.51,0.8">
+    <identifie><![CDATA[primary]]></identifie>
+    <title><![CDATA[主分类]]></title>
+    <description><![CDATA[主分类模板]]></description>
+    <author><![CDATA[xiaochu]]></author>
+    <url><![CDATA[http://www.reactshare.cn]]></url>
+    <category>
+      <item>
+        <title><![CDATA[主分类]]></title>
+        <thumb><![CDATA[list.jpg]]></thumb>
+        <file><![CDATA[list]]></file>
+      </item>
+    </category>
+</manifest>

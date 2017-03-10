@@ -1,0 +1,20 @@
+<br />
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>积分来源</th>
+      <th>积分</th>
+      <th>增加时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    {loop $credits $item}
+    <tr>
+      <td>{$item['type']}</td>
+      <td><span style="color:#006400">{$item['credit']}</span></td>
+      <td>{php echo date('Y-m-d H:i:s', $item['createtime'])}</td>
+    </tr>
+    {/loop}
+  </tbody>
+</table>
+<p>*以上积分记录仅包括引客积分和首次关注送积分</p>

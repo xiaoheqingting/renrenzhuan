@@ -1,0 +1,45 @@
+<script type="text/javascript">
+$(document).ready(function() {
+  function listAddToCart(item) {
+    tip("正在处理数据...");
+    var total = parseInt(item.data('total'));
+    var stock = parseInt(item.data('stock'));
+    var id = parseInt(item.data('id'));
+
+    if(stock == 0) {
+      tip('库存不足，无法购买。');
+      return;
+    }
+    var url = '{php echo $this->createMobileUrl('mycart',array('op'=>'add'));}' + "&id=" + id + "&total=" + total;
+    $.getJSON(url, function(s){
+      if(s.result==0){
+        tip("只能购买 " + s.maxbuy + " 件!");
+      }else{
+        tip_close();tip("已加入购物车!", true);
+        /*
+        position: absolute;
+        top: .5rem;
+        left: 1.4375rem;
+        padding: .0625rem .25rem;
+        color: #ed145b;
+        border-radius: .9375rem;
+        font-size: .75rem;
+        text-align: center;
+        line-height: .75rem;
+        background: #fff;
+        */
+
+        $('.detail_car_num').css({'display':'block', 'width':'50px', 'height':'50px', 'line-height':'50px'}).html(s.total).animate({'display':'block', 'width':'.75rem', 'height':'.75rem', 'line-height':'.75rem'}, 'slow');
+        $('.shoping-car-num').css({'display':'block', 'width':'50px', 'height':'50px', 'line-height':'50px'}).html(s.total).animate({'display':'block', 'width':'.75rem', 'height':'.75rem', 'line-height':'.75rem'}, 'slow');
+      }
+    });
+  }
+
+  $('.item-add-to-shopcart').click(function(e) {
+    e.preventDefault();
+    listAddToCart($(this));
+  });
+});
+
+</script>
+

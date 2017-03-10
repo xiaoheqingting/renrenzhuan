@@ -1,0 +1,24 @@
+{php include $_template->template('header')}
+{php include $_template->template('jumei-nav-header')}
+<style>
+  .nav-sub-item { padding:15px 5px; }
+  .nav-sub-item li { float:left; padding:5px; }
+  .clearfix { clear:both; }
+</style>
+<section class="nav-panel">
+  {loop $category $cat}
+  <nav>
+    <div class="deals-content-header">
+      <span><a href="{php echo murl('entry/module/list2', array('m'=>'quickshop', 'pcate'=>$cat['id']))}">{$cat['name']}</a></span>
+    </div>
+
+  <ul class="nav-sub-item clearfix">
+    {loop $children[$cat['id']] $child}
+    <li><a href="{php echo murl('entry/module/list2', array('m'=>'quickshop', 'pcate'=>$child['parentid'], 'ccate'=>$child['id']))}">{$child['name']}</a></li>
+    {/loop}
+  </ul>
+  </nav>
+  {/loop}
+</section>
+{php include $_template->template('jumei-nav-footer')}
+{php include $_template->template('footer')}

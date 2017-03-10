@@ -1,0 +1,17 @@
+{template 'header'}
+{php $row = $detail;}
+<link rel="stylesheet" type="text/css" href="../addons/quicktemplate/xc_miji/aboslute/reset.css" media="all">
+<style>
+  img{max-width:100%!important;}
+  {$_W['styles']['css']}
+</style>
+<div>
+  <article>
+  <div class="content">
+    {$row['content']}    
+  </div>
+  </article>
+</div>
+{template 'recommend'}
+{php $footer_off=true; }
+{template 'footer'}

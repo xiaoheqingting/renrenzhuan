@@ -1,0 +1,107 @@
+<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://jq22.qiniudn.com/masonry-docs.min.js"></script>
+<style>
+  .container-fluid {
+    padding: 10px;
+    background: rgb(242,242,242);
+  }
+  .box {
+    margin-bottom: 20px;
+    padding:4px;
+    float: left;
+    width: 140px;
+    border-bottom: 1px solid rgb(194,194,194);
+    background: rgb(255,255,255);
+  }
+  .box img {
+    max-width: 100%
+  }
+
+  .homeItemMain .box p {
+    width: 120px;
+    height: 30px;
+    position: absolute;
+    z-index: 20;
+    left: 0px;
+    bottom: 8px;
+  }
+  .homeItemMain .box a {
+    width: 100%;
+    display: block;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+  }
+  .homeItemMain .box p em {
+    width: 30px;
+    height: 30px;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    font-style: normal;
+  }
+  .homeItemMain .box p em {
+    background: #f95f19;
+    color: #fff;
+  }
+  .homeItemMain .box p span {
+    width: 60px;
+    height: 30px;
+    padding: 0px 5px;
+    line-height: 30px;
+    text-align: left;
+    float: left;
+  }
+  .homeItemMain .box p span {
+    background: rgba(239,239,239,0.85);
+    color: #ff0000;
+  }
+</style>
+<script>
+  $(function() {
+    var $container = $('#masonry');
+    $container.imagesLoaded(function() {
+      $container.masonry({
+        itemSelector: '.box',
+        gutter: 10,
+        isAnimated: true,
+      });
+    });
+
+    var $wind = $(window);//将浏览器加入缓存中
+    var $do = $('.box');//将你要改变宽度的div元素加入缓存中
+    var win = $wind.outerWidth()//首先获取浏览器的宽度
+
+    var newW = $wind.outerWidth();
+    $do.css('width', (newW / 2 - 15) + 'px');
+
+    $win.resize(function(){
+      //浏览器变化宽度的动作。
+      var newW = $wind.outerWidth();
+      $do.css('width', (newW / 2 - 30) + 'px');
+    });
+
+  })
+</script>
+
+        {loop $recommendcategory $c}
+            {if !empty($c['list'])}
+        <div class="homeItem">
+            <div class="homeItemHead"><span></span><em>{$c['name']}</em></div>
+            <div class="homeItemMain" id="list_{$c['parentid']}_{$c['id']}">
+              <div id="masonry" class="container-fluid">
+                  {loop $c['list'] $item}
+                  <div class="box">
+                    <a href="{php echo $this->createMobileUrl('detail', array('showid' => $item['showid']))}"><img src="{$item['thumb']}">
+                      <p><em>晒</em><span>♥{$item['votecount']}</span></p>
+                    </a>
+                  </div>
+                  {/loop}
+                </div>
+            </div>
+        </div>
+          {/if}
+        {/loop}
+

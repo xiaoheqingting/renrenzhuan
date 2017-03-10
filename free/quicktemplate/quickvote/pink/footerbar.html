@@ -1,0 +1,10 @@
+    <!--footer-->
+    <footer id="footer">
+    	<ul>
+        <li><a href="{php echo murl('entry/module/list', array('m'=>'quickshop', 'weid'=>$_W['uniacid']))}"><em class="icon-home icon-3x"></em><span>商城</span></a></li>
+        <li class="on"><a href="{php echo $this->createMobileUrl('submit')}"><em class="icon-camera icon-3x"></em><span>我要晒单</span></a></li>
+        <li><a href="{php echo murl('entry/module/myorder', array('m'=>'quickshop', 'weid'=>$_W['uniacid'], 'allstatus'=>1))}"><em class="icon-user icon-3x"></em><span>我的订单</span></a></li>
+        <li><a href="{php echo murl('entry/module/center', array('m'=>'quickcenter', 'weid'=>$_W['uniacid']))}"><em class="icon-th-large icon-3x"></em><span>我的账本</span></a></li>
+        </ul>
+    </footer>
+    <!--footer end-->

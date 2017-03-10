@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51,0.6">
+	<application setting="true">
+		<name><![CDATA[积分兑换]]></name>
+		<identifie><![CDATA[quickcredit]]></identifie>
+		<version><![CDATA[2.7.5]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[极速积分兑换]]></ability>
+		<description><![CDATA[极速积分兑换，打通了系统积分与会员积分，全部支持！]]></description>
+		<author><![CDATA[晓楚]]></author>
+		<url><![CDATA[http://blog.csdn.net/maray]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+	</platform>
+	<bindings>
+        <cover>
+			<entry title="积分兑换入口" do="goods" />
+			<entry title="积分中心入口" do="center" />
+        </cover>
+		<menu>
+			<entry title="兑换模板管理" do="goods" />
+			<entry title="兑换请求管理" do="request" />
+		</menu>
+		<home>
+			<entry title="积分兑换" do="goods" />
+		</home>
+  </bindings>
+	<install><![CDATA[
+
+CREATE TABLE IF NOT EXISTS `ims_quickcredit_request` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `weid` int(10) unsigned NOT NULL,
+  `from_user_realname` varchar(50) NOT NULL,
+  `from_user` varchar(50) NOT NULL,
+  `realname` varchar(200) NOT NULL,
+  `mobile` varchar(200) NOT NULL,
+  `residedist` varchar(200) NOT NULL,
+  `alipay` varchar(200) NOT NULL,
+  `note` varchar(200) NOT NULL,
+  `goods_id` int(10) unsigned NOT NULL,
+  `createtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `cost` Decimal(10,2) NOT NULL DEFAULT '0',
+  `price` Decimal(10,2) NOT NULL DEFAULT '0',
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `ims_quickcredit_goods` (
+  `goods_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `weid` int(10) unsigned NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL DEFAULT '0',
+  `timestart` int(11) default 0,
+  `timeend` int(11) default 0,
+  `deadline` datetime NOT NULL,
+  `per_user_limit` int(11) NOT NULL DEFAULT 0,
+  `min_idle_time` int(11) unsigned NOT NULL DEFAULT 10,
+  `cost` int(11) NOT NULL DEFAULT '0',
+  `cost_type` int(11) NOT NULL DEFAULT 1 COMMENT '1系统积分 2会员积分 4,8等留作扩展',
+  `price` int(11) NOT NULL DEFAULT '100',
+  `vip_require` int(10) NOT NULL DEFAULT '0' COMMENT '兑换最低VIP级别',
+  `content` text NOT NULL,
+  `type` int(11) NOT NULL DEFAULT 0 COMMENT  '是否需要填写收货地址,1,实物需要填写地址,0虚拟物品不需要填写地址',
+  `displayorder` int(11) NOT NULL DEFAULT 0 COMMENT  '排序',
+  `createtime` int(10) NOT NULL,
+  PRIMARY KEY (`goods_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE `ims_quickcredit_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(10) NOT NULL,
+  `from_user` varchar(50) DEFAULT NULL,
+  `nickname` varchar(100) DEFAULT NULL,
+  `credit` decimal(10,2) DEFAULT NULL,
+  `tag` varchar(100) DEFAULT NULL,
+  `createtime` int(10) DEFAULT NULL,
+  `delta` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+	]]></install>
+	<uninstall><![CDATA[
+
+		DROP TABLE IF EXISTS `ims_quickcredit_request`;
+		DROP TABLE IF EXISTS `ims_quickcredit_goods`;
+		DROP TABLE IF EXISTS `ims_quickcredit_log`;
+
+	]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51,0.6">
+	<application setting="true">
+		<name><![CDATA[菜单中心]]></name>
+		<identifie><![CDATA[quickcenter]]></identifie>
+		<version><![CDATA[1.1.4]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[菜单中心]]></ability>
+		<description><![CDATA[菜单中心]]></description>
+		<author><![CDATA[晓楚]]></author>
+		<url><![CDATA[blog.csdn.net/maray]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+	</platform>
+	<bindings>
+    <cover>
+      <entry title="菜单中心入口" do="Center" />
+    </cover>
+    <home>
+      <entry title="菜单中心" do="Center" />
+    </home>
+		<menu>
+      <entry title="菜单中心" do="Center" />
+		</menu>
+	</bindings>
+  <install><![CDATA[
+    CREATE TABLE IF NOT EXISTS `ims_quickcenter_module_bindings` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `weid` INT(11) NOT NULL,
+    `groupid` VARCHAR(50) NOT NULL COMMENT '分组名称',
+    `identifier` VARCHAR(50) NOT NULL COMMENT '菜单标示符',
+    `pidentifier` VARCHAR(50) NOT NULL COMMENT '上级菜单标示符',
+    `displayorder` INT(11) NOT NULL COMMENT '显示顺序',
+    `title` VARCHAR(50) NOT NULL,
+    `url` VARCHAR(1000) NOT NULL,
+    `thumb` VARCHAR(1000) NOT NULL,
+    `module` VARCHAR(1000) NOT NULL,
+    `do` VARCHAR(100) NOT NULL COMMENT '打开按钮的跳转链接',
+    `callback` VARCHAR(10240) NOT NULL,
+    `rich_callback_enable` INT(11) NOT NULL DEFAULT 0,
+    `enable` INT(11) NOT NULL DEFAULT 1
+    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+    ]]></install>
+	<uninstall><![CDATA[
+		DROP TABLE IF EXISTS  `ims_quickcenter_module_bindings`;
+	]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

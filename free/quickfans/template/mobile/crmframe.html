@@ -1,0 +1,141 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="zh-cn" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title></title>
+</head>
+<style>
+body {
+  font-family: "Microsoft Yahei", Arial, sans-serif;
+  font-size: 14px;
+  background-color: #e3e3e3;
+  overflow-x:hidden;
+}
+.title{
+  font-size: 15px;
+  margin-bottom:5px;
+}
+.content{e
+  margin-bottom:10px;
+}
+.textarea{
+  background-color: #FFFCEC;
+}
+.module{
+  border: 1px solid #DDDDDD; padding:5px; margin-bottom:10px;
+}
+.button {
+  display: inline-block;
+  position: relative;
+  margin: 0px;
+  padding: 0 20px;
+  text-align: center;
+  text-decoration: none;
+  font: bold 12px/25px Arial, sans-serif;
+
+  text-shadow: 1px 1px 1px rgba(255,255,255, .22);
+
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+
+  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+  -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+  box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  -ms-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+.green {
+  color: #3e5706;
+  background: #a5cd4e;
+}
+</style>
+<body  style="">
+<div>
+  <div class="module">
+    <div class="title">
+      <span>用户信息</span>
+    </div>
+    <div>
+      <span style="">客服账号：</span><span type="text" id="workeraccount"></span>
+    </div>
+    <div>
+      <span style="">当前访客：</span><span type="text" id="toUin"></span>
+    </div>
+  </div>
+  <div id="userinfo">
+  </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="http://o2o.gtimg.com/module/jquery.js" ></script>
+<script>
+
+// 跨站获取工号
+var ticket = getUrlParam('ticket');
+var workerAccouont = '';
+$.getScript('http://crm1.dkf.qq.com/php/index.php/thirdapp/appdemo/get_workeraccount_by_sessionkey?callback=wokeraccountCallback&ticket='+ticket);
+function wokeraccountCallback(data) {
+  document.getElementById('workeraccount').innerHTML =  data.workeraccount;
+  /*
+  var api = "{$_W['siteroot']}/app/index.php?c=entry&op=post&from_user=" + data['userid'] + "&do=CRM&m=quickfans&i=18";
+  $(function() {
+    $.get(api,function(data){
+      $('#userinfo').html(data);
+    });
+  });
+  */
+}
+
+
+
+function strToJson(str){
+  var json = (new Function("return " + str))();
+  return json;
+}
+
+function getUrlParam(name)
+{
+  var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+  var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+  if (r!=null) return unescape(r[2]); return null; //返回参数值
+}
+
+
+function MCS_ClientNotify(EventData) {
+  EventData = strToJson(EventData);
+  switch(EventData['event']){
+    case 'OnUserChange':{
+      OnUserChange(EventData);
+      break;
+    }
+    case 'OnMapMsgClick':{
+      OnMapMsgClick(EventData);
+      break;
+    }
+  }
+}
+
+function OnUserChange(data)
+{
+  document.getElementById('toUin').innerHTML = data['userid'];
+  try{
+    var api = "{$_W['siteroot']}/app/index.php?c=entry&op=post&from_user=" + data['userid'] + "&do=CRM&m=quickfans&i={$_W['uniacid']}";
+    $.get(api,function(data){
+      $('#userinfo').html(data);
+    });
+  }catch(e){
+
+  }
+}
+
+function OnMapMsgClick (data) {
+}
+
+</script><!--[if !IE]>|xGv00|539017d66e4e60b1c82cbc86aa9a5d50<![endif]-->

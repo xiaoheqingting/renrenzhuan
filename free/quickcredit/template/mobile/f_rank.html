@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="../addons/quickcredit/style/css.css?v=17" />
+
+<section id="ranking"> <span id="ranking_title">我的排行：{if $myrank < 0}千里之外{else}{$myrank}{/if}</span>
+  <section id="ranking_list">
+    <?php $cnt  = 0; ?>
+    {loop $ranklist $key $item}
+      <?php if (++$cnt > 20) break; ?>
+    <section class="box">
+      <section class="col_1" title="{php echo 1 + $key}">{php echo 1 + $key}</section>
+      <section class="col_2"><img src="{if empty($item['avatar'])}./addons/quickcredit/images/pic.jpg?v=2{else}{$item['avatar']}{/if}"  /></section>
+      <section class="col_3">{$item['nickname']}</section>
+      <section class="col_4">{$item['credit1']}</section>
+    </section>
+    {/loop}
+  </section>
+ </section>
+ <p style="line-height:20px">*进入排行榜条件：已经关注公众号，并且有图像</p>

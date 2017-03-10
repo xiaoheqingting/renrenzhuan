@@ -1,0 +1,28 @@
+{template 'header'}
+		<div class="jumbotron clearfix alert alert-{$label}" style="width:80%;margin:0 auto;margin-top:100px;">
+			<div class="row">
+				<div class="col-xs-12 col-sm-3 col-lg-2">
+					<i class="fa fa-5x fa-{if $label=='success'}check-circle{/if}{if $label=='danger'}times-circle{/if}{if $label=='info'}info-circle{/if}{if $label=='warning'}exclamation-triangle{/if}"></i>
+				</div>
+				<div class="col-xs-12 col-sm-8 col-md-9 col-lg-10">
+					<h2>{$caption}</h2>
+					<p>{$msg}</p>
+					{if !empty($redirect)}
+					<p> <a href="{$redirect}" style="font-size:16px;float:right;font-family:SimSun;">继续</a></p>
+					<script type="text/javascript">
+            setTimeout(function () {
+							location.href = "{$redirect}";
+						}, 3000);
+					</script>
+					{else}
+					<p> <a href="#" style="font-size:16px;float:right;font-family:SimSun;">三秒后自动关闭本页面</a></p>
+					<script type="text/javascript">
+            setTimeout(function () {
+              wx.closeWindow();
+						}, 3000);
+					</script>
+					{/if}
+				</div>
+			</div>
+		</div>
+{template 'footer'}

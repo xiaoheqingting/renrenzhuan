@@ -1,0 +1,40 @@
+{php include $_template->template('header')}
+	<!--header-->
+    <header id="header">
+      <a href="{php echo murl('entry/module/list', array('m'=>'quickshop', 'weid'=>$_W['uniacid']))}" class="back-btn icon-angle-left icon-4x"></a>
+      <a style="color:white" href="{php echo $this->createMobileUrl('submit')}" class="upload-btn icon-camera icon-4x"></a>
+        <h1>晒单</h1>
+    </header>
+    <!--header end-->
+	<!--footer-->
+    {php include $_template->template('footerbar')}
+	<!--footer end-->
+    <!--content-->
+    <div class="content">
+        <!--banner-->
+        <div class="detail-img">
+            <div id="banner_box" class="box_swipe">
+                <ul>
+                    {loop $advs $adv}
+                    <li>
+                      <a href="{if empty($adv['link'])}#{else}{$adv['link']}{/if}" rel='{$_W['attachurl']}{$adv['thumb']}'><img src="{$_W['attachurl']}{$adv['thumb']}" alt="" /></a>
+                    </li>
+                    {/loop}
+                </ul>
+                <ol>
+                  {php $slideNum = 1;}
+                  {loop $advs $adv}
+                    <li{if $slideNum == 1} class="on"{/if}></li>
+                  {php $slideNum++;}
+                  {/loop}
+                </ol>
+            </div>
+        </div>
+        <!--banner end-->
+        <!--栏目一-->
+        {php include $_template->template('waterfall')}
+        <!--栏目一 end-->
+    </div>
+    <!--content end-->
+
+{php include $_template->template('footer')}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest versionCode="0.5,0.51">
+    <identifie><![CDATA[shouxiaoshen]]></identifie>
+    <title><![CDATA[斜图列表]]></title>
+    <description><![CDATA[斜图列表]]></description>
+    <author><![CDATA[shouxiaoshen]]></author>
+    <url><![CDATA[http://www.xuehuar.com]]></url>
+    <category>
+      <item>
+        <title><![CDATA[小神1]]></title>
+        <thumb><![CDATA[4.jpg]]></thumb>
+        <file><![CDATA[list_img1]]></file>
+      </item>
+
+      <item>
+        <title><![CDATA[小神2]]></title>
+        <thumb><![CDATA[5.jpg]]></thumb>
+        <file><![CDATA[list_img2]]></file>
+      </item>
+      <!--item>
+        <title><![CDATA[小神3]]></title>
+        <thumb><![CDATA[http://my.hnzyzx.com/upload/2014/01/15/23438735804.jpg]]></thumb>
+        <file><![CDATA[list_img3]]></file>
+      </item-->
+      <!--item>
+        <title><![CDATA[小神4]]></title>
+        <thumb><![CDATA[1.jpg]]></thumb>
+        <file><![CDATA[list_text1]]></file>
+      </item-->
+      <item>
+        <title><![CDATA[小神5]]></title>
+        <thumb><![CDATA[6.jpg]]></thumb>
+        <file><![CDATA[list_text2]]></file>
+      </item>
+      <item>
+        <title><![CDATA[小神6]]></title>
+        <thumb><![CDATA[2.jpg]]></thumb>
+        <file><![CDATA[list_text3]]></file>
+      </item>
+    </category>
+    <article>
+      <item>
+        <title><![CDATA[小神]]></title>
+        <thumb><![CDATA[3.jpg]]></thumb>
+        <file><![CDATA[detail]]></file>
+      </item>
+  </article>
+
+</manifest>

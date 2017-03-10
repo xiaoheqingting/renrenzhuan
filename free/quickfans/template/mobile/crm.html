@@ -1,0 +1,38 @@
+<link href="//cdn.bootcss.com/foundation/5.5.2/css/normalize.css" rel="stylesheet">
+<div style="margin:10px;padding:5px;border-color:#e3e3e3;background:white;border-bottom:1px solid transparent;border-radius:3px;">
+
+  <p>
+  <b>{$fans['nickname']}</b>
+  <a style="text-align:right" target="_blank" href="{php echo $_W['siteroot'] . wurl('site/entry/Center', array('m'=>'quickfans', 'op'=>'post', 'from_user'=>$from_user, 'uniacid'=>$_W['uniacid']))}">更多信息</a>
+  </p>
+  积分{$fans['credit1']}分, 余额{$fans['credit2']}元<br/>
+  默认收货地址：{$address['realname']} {$address['mobile']} {$address['province']} {$address['city']} {$address['area']} {$address['address']} <br/>
+  推荐人：{if empty($leader)}系统{else}{$leader['nickname']}{/if}
+</div>
+
+{php $has_goods = false;}
+{loop $allgoods $goods}
+  {php $has_goods = true;}
+<div style="margin:10px;padding:5px;border-color:#e3e3e3;background:white;border-bottom:1px solid transparent;border-radius:3px;">
+  <ul type="circle">
+    <li><b>产品名称</b> {$goods['title']}</li>
+    <li><b>交易价格</b> {$goods['ordergoodsprice']}元 x {$goods['total']}</li>
+    <li><b>状态更新</b> {php echo date('Y-m-d H:i:s', $goods['updatetime'])}</li>
+    {if !empty($orders[$goods['orderid']]['remark']) }
+    <li><b>订单备注</b> {php echo $orders[$goods['orderid']]['remark']}</li>
+    {/if}
+
+    {if !empty($goods['expresssn'])} 
+    <li><b>物流信息</b> <a target="_blank" href="http://www.kuaidi100.com/chaxun?com={$goods['express']}&nu={$goods['expresssn']}">{$goods['expresssn']} ({$goods['expresscom']})</a></li>
+    {/if}
+    <li>{php echo Dispatch::getSendTypeName($goods['sendtype'])}  {php echo Order::getPayTypeName($goods['paytype']);}
+    <b>【{php echo $_order->getOrderStatusName($goods['status'])}】    <a target="_blank" href="{php echo $_W['siteroot'] . wurl('site/entry/order', array('m'=>'quickshop', 'op'=>'detail', 'id'=>$goods['orderid'], 'uniacid'=>$goods['weid']))}"> 订单操作</a></b></li>
+  </ul>
+</div>
+{/loop}
+
+{if false == $has_goods}
+    <p style="color: inherit;">
+    还没有TA的购买记录。
+    </p>
+{/if}

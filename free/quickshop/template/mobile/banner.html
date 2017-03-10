@@ -1,0 +1,23 @@
+<style>
+  .banner-info { border-bottom: .0625rem solid #DDD; position: relative;background: #fff;padding: .625rem; }
+  .banner-info div {font-size:.8125rem;margin-bottom:4px;color:black;}
+</style>
+
+<div>
+  <ul>
+    {loop $banners $banner}
+    <li style="margin-bottom:10px">
+    <a href="{if empty($banner['link'])}#{else}{$banner['link']}{/if}">
+      <div class="banner-info">
+        <div>{$banner['advname']}</div>
+        {if !empty($banner['thumb'])}
+        <img src="{php echo toimage($banner['thumb'])}" alt=""  width='100%' height='auto'/>
+        {/if}
+      </div>
+    </a>
+    <span class="title">{$banner['bannername']}</span>
+    </li>
+    {/loop}
+  </ul>
+</div>
+

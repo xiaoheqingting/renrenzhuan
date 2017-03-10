@@ -1,0 +1,67 @@
+{php include $_template->template('header')}
+	<!--header-->
+    <header id="header">
+    	<a href="javascript:history.back()" class="back-btn icon-angle-left icon-4x"></a>
+        <h1>晒单详情</h1>
+    </header>
+    <!--header end-->
+    <!--content-->
+    <div class="content">
+        <!--商品详情-->
+        <div class="goods-detail">
+          {php include $_template->template('detail-profile')}
+        </div>
+        <style>
+          .triangle { margin: -10px 0 0 50px; width:0;height:0;border-width:20px;border-style:solid dashed dashed dashed;border-color:transparent transparent #f2f2f5 transparent; }
+          .gallary {padding:10px; background-color:#f2f2f5; margin: 0px; height: auto; }
+          .gallary img { width: 100%; height: auto; overflow: hidden; padding: 0px; margin: 0px; }
+        </style>
+        <div class="triangle"></div>
+        <div class="gallary">
+          {loop $show['images'] $row}
+          <p><img src="{$row}" alt="" /></p>
+          <br/>
+          {/loop}
+        </div>
+        <!--商品详情 end-->
+    </div>
+    <!--content end-->
+   <!--footer-->
+    <footer id="goods-footer">
+    {if (empty($_W['fans']['from_user']) or $_W['fans']['follow'] == 0) and $this->module['config']['allow_anoy_vote'] == 1}
+      <a id="buy" href="{php echo $this->module['config']['follow_url']}" class="buy-btn buy-btn-disabled">关注我们</a>
+    {elseif !empty($show['goodsid'])}
+      <a id="buy" href="{php echo murl('entry/module/detail', array('weid'=>$_W['uniacid'], 'm'=>'quickshop', 'id'=>$show['goodsid']))}" class="buy-btn buy-btn-disabled">购买</a>
+    {/if}
+        <a id="voteit" href="javascript:void(0)"  class="join-cart-btn">点赞投票</a>
+        <a href="javascript:void();" class="shopping-cart-icon"><span class="icon-heart icon-3x"></span><em id="votecount">{$show['votecount']}</em></a>
+    </footer>
+    <!--footer end-->
+
+<script>
+
+  $(function() {
+
+  $("#voteit").click(function(){ voteit();});
+
+  function voteit(){
+    tip("正在处理数据...");
+    var url = '{php echo $this->createMobileUrl('AjaxVote',array('op'=>'add','showid'=>$show['showid']));}';
+    $.getJSON(url, function(ret){
+      var s = ret.message;
+      if(s.result == 1) {
+        tip_close();tip("投票成功!" + s.total);
+        $('#votecount').css({'width':'50px', 'height':'50px', 'line-height':'50px'}).html(s.total).animate({'width':'20px', 'height':'20px', 'line-height':'20px'}, 'slow');
+      } else if(s.result==2 || s.result==3 || s.result==4 || s.result == 5){
+        tip(s.msg);
+        setTimeout('tip_close();', 3000);
+      } else {
+        tip("系统错误! 错误号:" + s.result);
+        console.log(s);
+      }
+    });
+  }
+});
+</script>
+
+{php include $_template->template('footer')}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51,0.6">
+	<application setting="false">
+		<name><![CDATA[消息传送机]]></name>
+		<identifie><![CDATA[quickdynamics]]></identifie>
+		<version><![CDATA[1.0.5]]></version>
+		<type><![CDATA[business]]></type>
+    <ability><![CDATA[专业发消息三十年]]></ability>
+    <description><![CDATA[客服消息、模板消息、耗时任务，我全都行。]]></description>
+		<author><![CDATA[晓楚]]></author>
+    <url><![CDATA[http://blog.csdn.net/maray]]></url>
+	</application>
+	<platform>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+	</platform>
+  <bindings>
+    <cover>
+    </cover>
+    <menu>
+			<entry title="查看日志" do="Dynamics" />
+		</menu>
+		<home>
+		</home>
+	</bindings>
+  <install><![CDATA[
+
+    CREATE TABLE IF NOT EXISTS `ims_quickdynamics_option` (
+      `running` int(10) NOT NULL,
+      `lasttime` int(10) NOT NULL
+    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+    INSERT INTO `ims_quickdynamics_option` VALUES (0, 0);
+
+    CREATE TABLE IF NOT EXISTS `ims_quickdynamics_queue` (
+      `id` int(10) NOT NULL AUTO_INCREMENT,
+      `module` varchar(50) NOT NULL,
+      `file` varchar(50) NOT NULL,
+      `class` varchar(50) NOT NULL,
+      `method` varchar(50) NOT NULL,
+      `param` varchar(10240) NOT NULL,
+      `createtime` int(10) NOT NULL,
+      PRIMARY KEY (`id`)
+   ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+    ]]></install>
+	<uninstall><![CDATA[
+	]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

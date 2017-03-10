@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51,0.6">
+	<application setting="true">
+		<name><![CDATA[会员中心]]></name>
+		<identifie><![CDATA[quickfans]]></identifie>
+		<version><![CDATA[1.1]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[会员中心]]></ability>
+		<description><![CDATA[会员中心]]></description>
+		<author><![CDATA[晓楚]]></author>
+		<url><![CDATA[blog.csdn.net/maray]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+	</platform>
+	<bindings>
+		<menu>
+      <entry title="会员列表" do="Center" />
+		</menu>
+	</bindings>
+  <install><![CDATA[
+    ]]></install>
+	<uninstall><![CDATA[
+	]]></uninstall>
+	<upgrade><![CDATA[]]></upgrade>
+</manifest>

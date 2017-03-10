@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51">
+	<application setting="true">
+		<name><![CDATA[余额取现]]></name>
+		<identifie><![CDATA[quickmoney]]></identifie>
+		<version><![CDATA[2.7.0]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[余额取现]]></ability>
+		<description><![CDATA[余额取现，支付宝，银行卡，微信，全支持！]]></description>
+		<author><![CDATA[晓楚]]></author>
+		<url><![CDATA[http://blog.csdn.net/maray]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="false" />
+	</platform>
+	<bindings>
+        <cover>
+			<entry title="余额取现入口" do="goods" />
+        </cover>
+		<menu>
+			<entry title="取现模板管理" do="goods" />
+			<entry title="取现请求管理" do="request" />
+		</menu>
+		<home>
+			<entry title="余额取现" do="goods" />
+		</home>
+  </bindings>
+	<install><![CDATA[
+
+CREATE TABLE IF NOT EXISTS `ims_quickmoney_request` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `weid` int(10) unsigned NOT NULL,
+  `from_user_realname` varchar(50) NOT NULL,
+  `from_user` varchar(50) NOT NULL,
+  `realname` varchar(200) NOT NULL,
+  `mobile` varchar(200) NOT NULL,
+  `alipay` varchar(200) NOT NULL,
+  `bankcard` varchar(200) NOT NULL,
+  `bankname` varchar(200) NOT NULL,
+  `note` varchar(200) NOT NULL,
+  `cost` Decimal(10,2) NOT NULL DEFAULT '100' COMMENT '消耗余额数',
+  `userchangecost` int(10) NOT NULL DEFAULT 0 COMMENT '用户是否可以修改兑换值',
+  `goods_id` int(10) unsigned NOT NULL,
+  `exchangetype` int(10) NOT NULL DEFAULT '1' COMMENT '1支付宝 2银行卡 3微信支付',
+  `createtime` int(10) unsigned NOT NULL DEFAULT '0',
+  `status` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS `ims_quickmoney_goods` (
+  `goods_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `weid` int(10) unsigned NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL DEFAULT '0',
+  `timestart` int(11) default 0,
+  `timeend` int(11) default 0,
+  `deadline` datetime NOT NULL,
+  `per_user_limit` int(11) NOT NULL DEFAULT 0,
+  `cost` Decimal(10,2) NOT NULL DEFAULT '100' COMMENT '消耗余额数',
+  `userchangecost` int(10) NOT NULL DEFAULT 0 COMMENT '用户是否可以修改兑换值',
+  `exchangetype` int(10) NOT NULL DEFAULT '1' COMMENT '1支付宝 2银行卡 3微信支付',
+  `vip_require` int(10) NOT NULL DEFAULT '0' COMMENT '兑换最低VIP级别',
+  `displayorder` int(11) NOT NULL DEFAULT 0 COMMENT  '排序',
+  `content` text NOT NULL,
+  `createtime` int(10) NOT NULL,
+  PRIMARY KEY (`goods_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+	]]></install>
+	<uninstall><![CDATA[
+		
+		DROP TABLE IF EXISTS `ims_quickmoney_request`;
+		DROP TABLE IF EXISTS `ims_quickmoney_goods`;
+		
+	]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.5,0.51">
+	<application setting="true">
+		<name><![CDATA[分销管理]]></name>
+		<identifie><![CDATA[quickdist]]></identifie>
+		<version><![CDATA[2.1.9]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[分销管理]]></ability>
+		<description><![CDATA[分销管理]]></description>
+		<author><![CDATA[晓楚]]></author>
+		<url><![CDATA[]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<rule embed="false" />
+	</platform>
+	<bindings>
+		<menu>
+      <entry title="分销管理" do="order" />
+      <entry title="返利记录" do="commission" />
+      <entry title="消息通知" do="notify" />
+		</menu>
+	</bindings>
+	<install><![CDATA[
+CREATE TABLE IF NOT EXISTS `ims_quickdist_commission` (
+  `weid` int(10) unsigned NOT NULL,
+  `orderid` int(10) unsigned NOT NULL,
+  `goodsid` int(10) unsigned NOT NULL,
+  `order_leader` varchar(50) NOT NULL,
+  `order_openid` varchar(50) NOT NULL,
+  `order_createtime` int(10) unsigned NOT NULL,
+  `total` int(10) unsigned NOT NULL DEFAULT '1' COMMENT '订单下包含本商品数量',
+  `rate` decimal(10,2) NOT NULL DEFAULT '0' COMMENT '代理佣金,取值为0.00到1.00',
+  `ordergoodsprice` decimal(10,2) default '0' COMMENT '订单中本商品价格',
+  `level` int(10) unsigned NOT NULL,
+  `commission_value` decimal(10,2) default 0 NOT NULL,
+  `createtime` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`weid`, `orderid`, `goodsid`, `order_leader`),
+  KEY `indx_order_leader` (`weid`, `order_leader`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_quickdist_notify` (
+  `weid` int(10)  NOT NULL,
+  `level` int(10)  NOT NULL DEFAULT 3,
+  `param` varchar(10240)  NOT NULL,
+  `createtime`  int(10) unsigned NOT NULL DEFAULT 0
+) ENGINE = MYISAM DEFAULT CHARSET = utf8;
+
+
+	]]></install>
+  <uninstall>
+    <![CDATA[
+		DROP TABLE IF EXISTS `ims_quickdist_commission`;
+		DROP TABLE IF EXISTS `ims_quickdist_notify`;
+    ]]>
+  </uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

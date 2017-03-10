@@ -1,0 +1,73 @@
+
+<div class="form-group">
+  {php echo FormTpl::label2('展示等级', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+    <div class="input-group">
+      <span for="min_visible_level" class="input-group-addon">VIP等级必须达到</span>
+      {php echo FormTpl::getWebControl2('option', 'min_visible_level', $item['min_visible_level'], array('0'=>'不限等级', '1'=>$vip_kv[1], '2'=>$vip_kv[2], '3'=>$vip_kv[3], '4'=>$vip_kv[4], '5'=>$vip_kv[5], '6'=>$vip_kv[6], '7'=>$vip_kv[7], '8'=>$vip_kv[8], '9'=>$vip_kv[9]))}
+      <span class="input-group-addon">后可见本商品。</span>
+    </div>
+    <span class="help-block">用户VIP等级低于该等级的时候，不会在商品列表中看到该商品。是否能购买该商品，取决于下面的“购买等级“设置。</span>
+  </div>
+</div>
+
+
+<div class="form-group">
+  {php echo FormTpl::label2('购买等级', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+    <div class="input-group">
+      <label  class="input-group-addon">VIP等级必须达到</label>
+      {php echo FormTpl::getWebControl2('option', 'min_buy_level', $item['min_buy_level'], array('0'=>'不限等级', '1'=>$vip_kv[1], '2'=>$vip_kv[2], '3'=>$vip_kv[3], '4'=>$vip_kv[4], '5'=>$vip_kv[5], '6'=>$vip_kv[6], '7'=>$vip_kv[7], '8'=>$vip_kv[8], '9'=>$vip_kv[9]))}
+      <label  class="input-group-addon">后可购买本商品。</label>
+    </div>
+    <span class="help-block">商品对用户可见，不意味着用户可以购买。可以购买，也不意味着可以从列表中可见。两个维度来控制，可以更加灵活。</span>
+  </div>
+</div>
+
+
+<div class="form-group">
+  {php echo FormTpl::label2('购买升级VIP', 'col-xs-12 col-sm-3 col-md-2 col-lg-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+    <div class="input-group">
+      <label  class="input-group-addon">购买后，等级上升到</label>
+      {php echo FormTpl::getWebControl2('option', 'promote_to_level', $item['promote_to_level'], array('0'=>$vip_kv[0], '1'=>$vip_kv[1], '2'=>$vip_kv[2], '3'=>$vip_kv[3], '4'=>$vip_kv[4], '5'=>$vip_kv[5], '6'=>$vip_kv[6], '7'=>$vip_kv[7], '8'=>$vip_kv[8], '9'=>$vip_kv[9]))}
+      <label  class="input-group-addon">说明：若消费者等级已经比本等级高，则保持更高等级不变。</label>
+    </div>
+    <span class="help-block" style="color:red; weight:bold;">如果消费者等级已经比本等级高，则保持更高等级不变。不会购买后被降级。<a href="{php echo url('profile/module/setting', array('m'=>'quickcenter'))}#vip">查看等级文案设置</a></span>
+  </div>
+</div>
+
+
+
+<div class="form-group">
+  {php echo FormTpl::label2('排序', 'col-xs-12 col-sm-3 col-md-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10">
+    {php echo FormTpl::getWebControl2('text', 'displayorder', $item['displayorder']); }
+    <span class="help-block">数字越大排序越靠前</span>
+  </div>
+</div>
+
+<div class="form-group">
+  {php echo FormTpl::label2('提醒店主发货', 'col-xs-12 col-sm-3 col-md-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10">
+    {php echo FormTpl::getWebControl2('text', 'dealeropenid', $item['dealeropenid']); }
+    <span class="help-block">请填写本品店主OpenID</span>
+  </div>
+</div>
+
+<div class="form-group">
+  {php echo FormTpl::label2('编辑权限', 'col-xs-12 col-sm-3 col-md-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10">
+    {php echo FormTpl::getWebControl2('text', 'permusers', $item['permusers']); }
+    <span class="help-block">将需要编辑权限的店员用户名填到上面，多个用户用空格分割例多个用户用空格分割。如：raywill jasimin。管理员默认拥有所有权限。
+      {if $_W['isfounder']}<a target="_blank" href="{php echo wurl('account/permission', array('uniacid'=>$_W['uniacid']))}">点击这里查看所有用户</a>{/if}</span>
+  </div>
+</div>
+
+<div class="form-group">
+  {php echo FormTpl::label2('最近编辑', 'col-xs-12 col-sm-3 col-md-2'); }
+  <div class="col-xs-12 col-sm-9 col-md-10">
+    <span class="help-block">{$item['lastedituser']}</span>
+  </div>
+</div>
+

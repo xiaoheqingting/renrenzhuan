@@ -1,0 +1,62 @@
+{template 'header'}
+<ul class="nav nav-tabs">
+	<li {if $operation == 'display'}class="active"{/if}><a href="{php echo $this->createMobileUrl('mycommission', array('operation' => 'display'))}">佣金分析</a></li>
+</ul>
+
+{if $operation == 'display'}
+<div class="main">
+	<div style="padding:15px;">
+    <?php
+    $sum = array(1=>0, 2=>0, 3=>0, 4=>0, 5=>0, 6=>0);
+    $sumall = 0;
+    foreach ($list as $item) {
+      $sum[$item['status']] += $item['commission'];
+      $sumall += $item['commission'];
+    }
+    ?>
+    <div class="alert alert-danger" role="alert">
+      <span class="fa fa-user" aria-hidden="true"></span>
+      <span class="sr-only">提示:</span>
+      {$fans['nickname']} (VIP{$fans['vip']}) - {$fans['realname']}<br/>佣金总计如下：
+      {loop $sum $key=>$com}
+      <span  style="margin-right:10px"><span class="label label-info">{php echo $_order->getOrderStatusName($key)}</span> {$com}元</span>
+      {/loop}
+      <span  style="margin-left:10px"><span class="label label-danger">总计</span> {$sumall}元 </span>
+    </div>
+    <div class="alert alert-success" role="alert">
+      说明：以上佣金统计包含了积分返利和现金返利的组合, 每1积分返利被折算为0.01元的现金返利显示在上面。
+    </div>
+
+		<table class="table table-hover">
+			<thead class="navbar-inner">
+				<tr>
+					<th>佣金</th>
+					<th>购买者</th>
+					<th>购买者级别</th>
+					<th>订单号</th>
+					<th>商品号</th>
+					<th>商品价格</th>
+					<th>商品返佣比例</th>
+				</tr>
+			</thead>
+			<tbody>
+				{loop $list $item}
+				<tr>
+          <td>{$item['commission']}元 - {$item['credittype']}</td>
+          <td><a href="{php echo $this->createWebUrl('mycommission', array('from_user'=>$item['from_user'], 'op'=>'user'))}">{$item['nickname']}</a></td>
+          <td>{$item['level']}级下线</td>
+          <td><a href="{php echo url('site/entry/order', array('id'=>$item['order'], 'm'=>'quickshop', 'uniacid'=>$_W['uniacid'], 'op'=>'detail'))}">订单号{$item['order']}</a>
+            <span class="label label-info">{php echo $_order->getOrderStatusName($item['status'])}</span>
+          </td>
+          <td><a href="{php echo url('site/entry/goods', array('id'=>$item['goods'], 'm'=>'quickshop', 'uniacid'=>$_W['uniacid'], 'op'=>'post'))}">商品号{$item['goods']}</a></td>
+          <td>{$item['price']}</td>
+          <td>{$item['commission_rate']}</td>
+				</tr>
+				{/loop}
+			</tbody>
+		</table>
+	</div>
+</div>
+{/if}
+
+{template 'footer'}

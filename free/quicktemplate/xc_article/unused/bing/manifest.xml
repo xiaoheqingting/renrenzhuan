@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest versionCode="0.5,0.51">
+    <identifie><![CDATA[bing]]></identifie>
+    <title><![CDATA[范冰冰]]></title>
+    <description><![CDATA[范冰冰]]></description>
+    <author><![CDATA[bing]]></author>
+    <url><![CDATA[http://blog.xiaoheqingting.com]]></url>
+    <category>
+      <item>
+        <title><![CDATA[范冰冰]]></title>
+        <thumb><![CDATA[bing.jpg]]></thumb>
+        <file><![CDATA[list_other1]]></file>
+      </item>
+    </category>
+</manifest>

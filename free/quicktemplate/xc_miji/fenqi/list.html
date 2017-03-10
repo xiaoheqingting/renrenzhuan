@@ -1,0 +1,85 @@
+{template 'header'}
+<style>
+    body {
+        background-color: #fbf9fe;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .vsui_nav {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        list-style-type: none;
+    }
+
+    .vsui_nav li {
+        font-size: 200%;
+        padding: 0px 10px;
+        margin: 0px 0px;
+        flex: 0 0 25%;
+    }
+
+    .vsui_nav img {
+        width:100%;
+    }
+
+    .vsui_nav a {
+        color:black;
+        text-decoration:none;
+    }
+
+    .vsui_nav p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height:25px;
+    }
+    .vsui_banner {
+    }
+
+    .vsui_banner a {
+        color:black;
+        text-decoration:none;
+    }
+
+    .vsui_banner li {
+        display: list-item;
+        width:100%;
+        margin-bottom:10px;
+    }
+    .vsui_banner li img{
+        width:100%;
+    }
+    .bd {
+        margin:20px 0px 20px 0px;
+    }
+
+</style>
+{if !empty($category['css']) }
+<style>
+    {php echo $category['css']; }
+</style>
+{/if}
+<!-- Banner -->
+<ul class="vsui_banner">
+    {if !empty($category['thumb']) }
+        <li><a href="#">
+            <img src="{php echo tomedia($category['thumb'])}" alt="{php echo $category['name']}" />
+        </a></li>
+    {/if}
+</ul>
+
+<!-- 推荐书籍 -->
+<ul class="vsui_nav">
+    {data func="xc_article_site_article" cid=$cid return="true" assign="result"}
+    {loop $result['list'] $row}
+    <li><a href="{$row['url']}">
+            <img src="{php echo tomedia($row['sharethumb'])}" alt="{$row['title']}" />
+            <p  style="text-align:center">{php echo $row['title']}</p>
+    </a></li>
+    {/loop}
+</ul>
+{$result['pager']}
+{template 'footer'}

@@ -1,0 +1,14 @@
+{if count($advlinks) > 0}
+<section id="deals-icon" class="deals-icon">
+    <ul class="clear">
+{loop $advlinks $k}
+      <li style='width:4.375rem;margin:0em;padding:0em;'>
+      <a href="{$k['url']}">
+        <img src="{php echo tomedia($k['thumb'])}" style="width:80%;margin:0 auto;" />
+        <span style="font-size:12px;margin:0 auto;">{$k['title']}</span>
+      </a>
+      </li>
+{/loop}
+    </ul>
+    </section>
+{/if}

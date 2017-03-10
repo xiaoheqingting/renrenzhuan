@@ -1,0 +1,11 @@
+absolute是一个微文章营销的模板，特色是：不包含任何css修饰，可以任你自由发挥。和第三方微信图文编辑器结合起来使用，可以发挥巨大威力。
+
+absolute目录请安装到addons/quicktemplate/xc_article/目录下(如果没有这个目录，请手动建立即可）
+
+manifest.xml: 模板说明文件，【必须有】。
+absolute.jpg: 效果预览图，后台选择模板的时候展示。【文件名由manifest.xml指定】
+detail.html: 模板文件 【文件名由manifest.xml指定】
+reset.css: 模板文件依赖的css【可选】
+
+附：安装好后，路径如下：
+addons/quicktemplate/xc_article/absolute/manifest.xml

@@ -1,0 +1,29 @@
+<form action="{php echo $this->createWebUrl('Request')}" method="post" role="form">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">搜索兑换请求</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-4 col-sm-3 col-xs-12">
+          <select class="form-control" style="margin-right:15px;" name="goods_id">
+            <option value="0">所有兑换商品</option>
+            {loop $allgoods $row}
+            <option value="{$row['goods_id']}" {if $row['goods_id'] == $_GPC['goods_id']} selected="selected"{/if}>{$row['title']}</option>
+            {/loop}
+          </select>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+          {php echo FormTpl::getWebControl2('text', 'keyword', $_GPC['keyword']); }
+          <span class="help-block">支持根据手机、姓名、或收货地址进行搜索</span>
+        </div>
+        <div class="col-lg-2 col-sm-3 col-xs-12">
+        {php echo FormTpl::getWebControl2('submit', 'submit', '搜索') }
+        {php echo FormTpl::getWebControl2('hidden', 'token', $_W['token'])}
+        {php echo FormTpl::getWebControl2('hidden', 'op', $operation)}
+        {php echo FormTpl::getWebControl2('hidden', 'search', $_GPC['keyword'])}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
